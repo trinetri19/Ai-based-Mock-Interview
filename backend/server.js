@@ -2,8 +2,6 @@ import  dotenv from"dotenv"
 dotenv.config()
 import express from"express";
 import  cors from "cors";
-import { WebSocketServer } from "ws";
-import { generateQuestion, evaluateAnswer } from "./Services/aiservices.js";
 const app = express();
 
 const  corsOptions = {
