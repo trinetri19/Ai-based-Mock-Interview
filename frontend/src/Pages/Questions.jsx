@@ -38,7 +38,7 @@ function Questions() {
 
         try {
             const response = await axios.post(
-                "http://localhost:8080/api/evaluate",
+                "https://ai-based-mock-interview.onrender.com/api/evaluate",
                 { question: currentQuestion, answer },
                 {
                     withCredentials: true

@@ -27,7 +27,7 @@ function Home() {
     setLoading(true);
     try {
       const response = await axios.post(
-        "http://localhost:8080/api/generate",
+        "https://ai-based-mock-interview.onrender.com/api/generate",
         { role, level },
         {
           headers: { "Content-Type": "application/json" },
