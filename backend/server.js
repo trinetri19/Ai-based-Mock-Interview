@@ -21,7 +21,7 @@ import  interviewRoutes from"./routes/interviewRoutes.js";
 app.use("/api", interviewRoutes);
 
 
-app.listen(8080, () => {
+app.listen(process.env.PORT, () => {
   console.log("Server running on port 8080");
 });
 
