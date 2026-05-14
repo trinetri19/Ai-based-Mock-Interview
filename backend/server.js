@@ -5,7 +5,7 @@ import  cors from "cors";
 const app = express();
 
 const  corsOptions = {
-  origin: 'http://localhost:5173',
+  origin: 'https://ai-based-mock-interview-full.onrender.com',
   credentials: true,
   optionsSuccessStatus: 200 
 }
