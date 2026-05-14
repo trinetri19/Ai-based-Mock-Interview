@@ -1,0 +1,173 @@
+/* Color Palette & Spacing Scale */
+:root {
+  --primary: #6366f1;
+  --accent: #a855f7;
+  --bg-dark: #020617;
+  --text-muted: #94a3b8;
+  --gap-large: 64px;
+  --gap-medium: 32px;
+  --gap-small: 16px;
+}
+
+.page-wrapper {
+  min-height: 100vh;
+  background: radial-gradient(circle at top right, #111827, #020617);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--gap-medium);
+  /* Added to allow scrolling on small devices */
+  overflow-y: auto; 
+  overflow-x: hidden;
+}
+
+.main-layout {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: var(--gap-large);
+  width: 100%;
+  max-width: 1200px;
+  align-items: start;
+}
+
+/* Media Column Spacing */
+.media-column {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-medium);
+  width: 100%;
+}
+
+.video-viewport {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: #000;
+  border-radius: clamp(16px, 4vw, 32px); /* Fluid corners */
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 40px 80px -20px rgba(0, 0, 0, 0.8);
+  isolation: isolate; /* Fixes safari border-radius overflow bugs */
+}
+
+.video-viewport video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scaleX(-1);
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+.video-viewport video.visible { opacity: 1; }
+
+/* Camera Toggle Button */
+.camera-toggle-btn {
+  align-self: center;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 12px 32px;
+  border-radius: 100px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  white-space: nowrap;
+}
+
+.camera-toggle-btn.active {
+  background: var(--primary);
+  border-color: transparent;
+  box-shadow: 0 0 25px rgba(99, 102, 241, 0.4);
+}
+
+/* Form Spacing & Design */
+.glass-form-card {
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(24px);
+  padding: clamp(24px, 5vw, 48px); /* Fluid padding */
+  border-radius: clamp(24px, 4vw, 40px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+}
+
+.form-header {
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+.form-header h1 {
+  font-size: clamp(1.5rem, 4vw, 2rem); /* Fluid font size */
+  margin: 12px 0;
+  background: linear-gradient(to bottom, #fff, #94a3b8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.form-body {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.input-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.input-field label {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  padding-left: 4px;
+}
+
+.input-field input, .input-field select {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 14px 16px;
+  color: white;
+  transition: border-color 0.3s;
+  font-size: 1rem; /* Better for mobile zoom prevention */
+  width: 100%;
+}
+
+/* Launch Button */
+.launch-btn {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  border: none;
+  padding: 16px;
+  border-radius: 14px;
+  color: white;
+  font-weight: 700;
+  font-size: 1.1rem;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: transform 0.2s, filter 0.2s;
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 1024px) {
+  .main-layout {
+    grid-template-columns: 1fr; /* Stacks columns */
+    gap: var(--gap-medium);
+    max-width: 600px; /* Prevents form from becoming too wide on tablets */
+  }
+  
+  .page-wrapper {
+    align-items: flex-start; /* Better for scrolling long forms */
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --gap-large: 32px;
+  }
+  
+  .camera-toggle-btn {
+    width: 100%; /* Full width button on small mobile */
+  }
+}

@@ -1,0 +1,169 @@
+:root {
+  --primary: #6366f1;
+  --bg-dark: #020617;
+  --glass: rgba(255, 255, 255, 0.03);
+  --border: rgba(255, 255, 255, 0.1);
+  --radius-lg: 24px;
+  --radius-md: 16px;
+}
+
+.interview-grid {
+  display: grid;
+  /* Fluid columns for desktop */
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: clamp(20px, 3vw, 40px);
+  padding: clamp(16px, 4vw, 40px);
+  max-width: 1400px;
+  margin: 0 auto;
+  min-height: 100vh;
+  box-sizing: border-box;
+  align-items: stretch;
+}
+
+/* LEFT SIDE STACKING */
+.left-column {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  min-width: 0; /* Prevents grid blowout */
+}
+
+.video-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/9;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: #000;
+  border: 1px solid var(--border);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+  /* Fixes Safari overflow bugs */
+  isolation: isolate; 
+}
+
+.live-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scaleX(-1);
+}
+
+.question-under-camera {
+  background: var(--glass);
+  padding: clamp(16px, 3vw, 24px);
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  backdrop-filter: blur(10px);
+}
+
+/* RIGHT SIDE AREA */
+.right-column {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.input-pane {
+  background: var(--glass);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: clamp(20px, 4vw, 32px);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  backdrop-filter: blur(12px);
+}
+
+.main-textarea {
+  flex: 1;
+  background: rgba(0,0,0,0.2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  color: #fff;
+  font-size: 1rem;
+  line-height: 1.6;
+  resize: none;
+  transition: all 0.3s ease;
+  /* Ensure a minimum height for mobile */
+  min-height: 200px; 
+}
+
+.main-textarea:focus {
+  border-color: var(--primary);
+  outline: none;
+  background: rgba(0,0,0,0.3);
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+}
+
+/* BUTTON STYLES OVER VIDEO */
+.video-actions-overlay {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  gap: 12px;
+}
+
+.start-btn, .stop-btn {
+  padding: 12px 24px;
+  border-radius: 50px;
+  border: none;
+  font-weight: 700;
+  cursor: pointer;
+  color: white;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  white-space: nowrap;
+}
+
+.start-btn { background: var(--primary); box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4); }
+.stop-btn { background: #ef4444; box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4); }
+
+.start-btn:hover, .stop-btn:hover {
+  transform: translateY(-2px) scale(1.02);
+}
+
+/* Badge/Labels */
+.badge {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  color: var(--primary);
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.question-text {
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  color: #f8fafc;
+  margin-top: 8px;
+}
+
+/* RESPONSIVE BREAKPOINTS */
+
+@media (max-width: 1100px) {
+  .interview-grid {
+    grid-template-columns: 1fr; /* Stack columns */
+    height: auto;
+  }
+  
+  .right-column {
+    order: 2; /* Ensure input stays below video/question */
+  }
+}
+
+@media (max-width: 600px) {
+  .video-actions-overlay {
+    bottom: 10px;
+    width: 90%;
+    justify-content: center;
+  }
+  
+  .start-btn, .stop-btn {
+    padding: 10px 16px;
+    font-size: 0.9rem;
+    flex: 1; /* Buttons take equal width on tiny screens */
+  }
+}
