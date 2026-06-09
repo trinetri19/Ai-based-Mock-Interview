@@ -16,7 +16,7 @@ app.use(express.json());
 
 
 import  interviewRoutes from"./routes/interviewRoutes.js";
-app.use("/api", interviewRoutes);
+app.use("/", interviewRoutes);
 
 
 app.listen(process.env.PORT, () => {
